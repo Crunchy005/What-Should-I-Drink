@@ -54,6 +54,8 @@ def get_user_reviews_csv(url):
     sleep(2)
 
 
+sleep(50)
+
 driver = get_new_driver()
 df_beer = pd.read_csv('./df_beer.csv', encoding = "latin1")
 df_beer['url'].apply(get_user_reviews_csv)
