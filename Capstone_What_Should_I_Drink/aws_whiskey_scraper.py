@@ -36,11 +36,16 @@ def get_whiskey_reviews(url):
     grade = []
     for i in soup.find_all('td', {'class':'contentCell2Popup'}):
         for x in i.find_all('img',{'src':True}):
-            grade.append(grade_grabber(x.attrs['src']))
+            try:
+                grade.append(grade_grabber(x.attrs['src']))
+            except:
+                grade.append('No Grade')
 
     review = []
     for i in soup.find_all('td', {'class':'contentCell2Popup', 'align':'left'}):
         review.append(cleaner(i.text))
+    
+    print(w_name, url)
     
 
     for i in range(0,len(username)):        
@@ -50,4 +55,4 @@ def get_whiskey_reviews(url):
 
 
 df_whiskey = pd.read_csv('./df_whiskey.csv')
-df_whiskey['url'][0:2].apply(get_whiskey_reviews)
+df_whiskey['url'][66:].apply(get_whiskey_reviews)
