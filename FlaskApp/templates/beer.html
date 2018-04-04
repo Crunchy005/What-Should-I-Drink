@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>What Should I Drink</title>
+</head>
+
+<body>
+
+<h3>Whiskey Recommendation</h3>
+  <form name="beer_selection" action="/beer" method='POST'>
+
+    <select name='beer_selection' method="GET" action="/">
+      {% for beer in beers %}
+      <option value= "{{beer}}">{{ beer }}</option>"
+      {% endfor %}
+    </select>
+
+      <button type="submit">Submit</button>
+
+  </form>
+
+  {% if submitted %}
+    Based on your selection of {{selected}}, your top 3 recommended whiskeys are:<br> <br>
+    {% for name in recommendations %}
+      {{name}} <br>
+    {% endfor %}
+
+  {% else %}
+    Please select a beer.
+  {% endif %}
+  
+  <br>
+  <br>
+
+  <form action="/" method="get">
+    <input type="submit" value="Return Home" id="button_home" />
+  </form>
+
+
+
+</body>
+</html>
