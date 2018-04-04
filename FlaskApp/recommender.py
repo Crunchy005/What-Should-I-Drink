@@ -7,7 +7,6 @@ df = pd.read_csv('../Data/recommender_data.csv')
 
 beers_list = sorted(df[df['id'] == 'b']['name'].unique().tolist())
 whiskey_list = sorted(df[df['id'] == 'w']['name'].unique().tolist())
-# whiskey_list.append(' ')
 
 def recommender(selection):
     x = df.loc[df['name'] == selection, 'id'].iloc[0]

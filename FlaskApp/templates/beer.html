@@ -12,12 +12,11 @@
 
     <select name='beer_selection' method="GET" action="/">
       {% for beer in beers %}
-      <option value= "{{beer}}">{{ beer }}</option>"
+        <option value= "{{beer}}" {% if submitted and selected==beer %} SELECTED {% endif %} >{{ beer }}</option>
       {% endfor %}
     </select>
 
       <button type="submit">Submit</button>
-
   </form>
 
   {% if submitted %}
