@@ -35,16 +35,29 @@ def dropdown_b():
     return render_template('beer.html', beers=beers_list, selected=request.form.get('beer_selection'), submitted=submitted, recommendations=recommendations)
 
 
+# @app.route('/whiskey', methods=['POST', 'GET'])
+# def dropdown_w():
+#     if request.method == 'POST':
+#         recommendations = recommender(request.form.get('whiskey_selection'))
+#         submitted = True
+#     else:
+#         recommendations = []
+#         submitted = False
+
+#     return render_template('whiskey.html', whiskeys=whiskey_list, selected=request.form.get('whiskey_selection'), submitted=submitted, recommendations=recommendations)
+
 @app.route('/whiskey', methods=['POST', 'GET'])
 def dropdown_w():
-    if request.method == 'POST':
-        recommendations = recommender(request.form.get('whiskey_selection'))
-        submitted = True
-    else:
-        recommendations = []
-        submitted = False
+    selected = request.form.get('whiskey_selection')
+    recommendations = [] if not selected else recommender(selected)
 
-    return render_template('whiskey.html', whiskeys=whiskey_list, selected=request.form.get('whiskey_selection'), submitted=submitted, recommendations=recommendations)
+    return render_template(
+        'whiskey.html',
+        whiskeys=whiskey_list,
+        selected=selected,
+        submitted=bool(selected),
+        recommendations=recommendations
+    )
 
 
 
