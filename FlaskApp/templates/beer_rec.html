@@ -1,3 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>What Should I Drink</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="jumbotron">
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <div class="card">
+            <div class="card-body pb-1">
+              <h1 class="card-title">Beer Recommendation</h1>
+              <div class="card-subtitle">What whiskey do you drink?</div>
+              <div class="card-text">
+                <form name="whiskey_selection" action="/beer_rec" method='POST'>
+                  <select name='whiskey_selection' method="GET" action="/" onchange="this.form.submit()">
+                    <option value="">Select Whiskey...</option>
+                    {% for whiskey in whiskeys %}
+                    <option value="{{whiskey}}" {% if selected==whiskey %} selected {% endif %}>
+                      {{whiskey}}
+                    </option>
+                    {% endfor %}
+                  </select>
+                </form>
+                <div class="mt-3">
+                  {% if submitted %}
+                  <span>
+                    Your top 3 recommended beers are:
+                  </span>
+                  {% else %}
+                  <span>
+                    Please select a whiskey.
+                  </span>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+            <ul class="list-group list-group-flush">
+              {% for name in recommendations %}
+              <li class="list-group-item">
+                {{name}}
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+          <a href="/">Return Home</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
+
+
+
 <!-- <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,69 +111,3 @@
 
 
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <title>What Should I Drink</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-    crossorigin="anonymous">
-
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
-</head>
-
-<body>
-  <div class="container">
-    <div class="jumbotron">
-      <div class="row">
-        <div class="col-md-6 offset-md-3">
-          <div class="card">
-            <div class="card-body pb-1">
-              <h1 class="card-title">Beer Recommendation</h1>
-              <div class="card-subtitle">What whiskey do you drink?</div>
-              <div class="card-text">
-                <form name="whiskey_selection" action="/whiskey" method='POST'>
-                  <select name='whiskey_selection' method="GET" action="/" onchange="this.form.submit()">
-                    <option value="">Select Whiskey...</option>
-                    {% for whiskey in whiskeys %}
-                    <option value="{{whiskey}}" {% if selected==whiskey %} selected {% endif %}>
-                      {{whiskey}}
-                    </option>
-                    {% endfor %}
-                  </select>
-                </form>
-                <div class="mt-3">
-                  {% if submitted %}
-                  <span>
-                    Your top 3 recommended beers are:
-                  </span>
-                  {% else %}
-                  <span>
-                    Please select a whiskey.
-                  </span>
-                  {% endif %}
-                </div>
-              </div>
-            </div>
-            <ul class="list-group list-group-flush">
-              {% for name in recommendations %}
-              <li class="list-group-item">
-                {{name}}
-              </li>
-              {% endfor %}
-            </ul>
-          </div>
-          <a href="/">Return Home</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</body>
-
-</html>
