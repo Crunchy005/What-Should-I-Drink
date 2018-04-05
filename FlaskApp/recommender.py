@@ -3,7 +3,7 @@ app = Flask(__name__)
 app.debug = True
 
 import pandas as pd
-df = pd.read_csv('../Data/recommender_data.csv')
+df = pd.read_csv('recommender_data.csv')
 
 beers_list = sorted(df[df['id'] == 'b']['name'].unique().tolist())
 whiskey_list = sorted(df[df['id'] == 'w']['name'].unique().tolist())
