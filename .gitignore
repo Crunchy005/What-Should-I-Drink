@@ -1,6 +1,7 @@
 # Capstone Ignores
 /Scraping/Scraped_Data/
 /Data/
+/FlaskApp/recommender_data.csv
 
 
 
